@@ -1,13 +1,8 @@
 import { useState } from "react"
-import AddTask from "./Components/AddTask"
-import Tasks from "./Components/Tasks"
 import { useEffect } from "react";
-import { json } from "react-router-dom";
 import Title from "./components/Title";
-
-
-
-
+import AddTask from "./components/AddTask";
+import Tasks from "./components/Tasks";
 
 function App() {
   const [tasks, setTasks] = useState(
@@ -66,7 +61,7 @@ function App() {
     <div className="bg-slate-500 flex justify-center p-6">
       <div className="w-[500px] space-y-4">
         <Title>Gerenciador de Tarefas</Title>
-        <AddTask onAddTaskSubmit={onAddTaskSubmit}/>
+        <AddTask onAddTaskSubmit={onAddTaskSubmit}/>        
         <Tasks tasks={tasks} taskClick={onTaskClick} deleteTask={deleteTask}/>
       </div>
     </div>

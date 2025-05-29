@@ -2,9 +2,6 @@ import { ChevronRightIcon, TrashIcon } from "lucide-react"
 import { useNavigate } from "react-router-dom"
 import Button from "./Button";
 
-
-
-
 function Tasks(props) {
     const navigate = useNavigate();
     
