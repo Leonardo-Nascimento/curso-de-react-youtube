@@ -10,12 +10,12 @@ function App() {
   );
 
   useEffect(() => {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
+    localStorage.setItem("tasks", JSON.stringify(tasks));    
   },[tasks]);
 
-  useEffect(() =>{
+  useEffect(() => {
     async function fetchTasks(){
-      const response = await fetch('https://jsonplaceholder.typicode.com/todos?_limit=10', {
+      const response = await fetch('https://jsonplaceholder.typicode.com/todos?_limit=3', {
         method:'GET'
       })
 
@@ -24,7 +24,7 @@ function App() {
       setTasks(data)
       }
       fetchTasks();
-  });
+  }, []);
 
   function onTaskClick(taskId){
     const newTask = tasks.map(t => {
@@ -54,11 +54,12 @@ function App() {
         isCompleted: false
       };
 
+      console.log(newTask)
       setTasks([...tasks, newTask]);
     }
 
   return (
-    <div className="bg-slate-500 flex justify-center p-6">
+    <div className="bg-slate-500 flex justify-center p-6 h-screen">
       <div className="w-[500px] space-y-4">
         <Title>Gerenciador de Tarefas</Title>
         <AddTask onAddTaskSubmit={onAddTaskSubmit}/>        
