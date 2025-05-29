@@ -13,18 +13,26 @@ function App() {
     localStorage.setItem("tasks", JSON.stringify(tasks));    
   },[tasks]);
 
-  useEffect(() => {
-    async function fetchTasks(){
-      const response = await fetch('https://jsonplaceholder.typicode.com/todos?_limit=3', {
-        method:'GET'
-      })
+  // useEffect(() => {
+  //     async function fetchTasks(){
 
-      const data = await response.json();
-      
-      setTasks(data)
-      }
-      fetchTasks();
-  }, []);
+  //         if(JSON.parse(localStorage.getItem("tasks")).length == 0){
+
+  //           const response = await fetch('https://jsonplaceholder.typicode.com/todos?_limit=3', {
+  //             method:'GET'
+  //           })
+
+  //           const data = await response.json();         
+        
+  //           console.log(JSON.parse(localStorage.getItem("tasks")));          
+
+  //           setTasks(data)
+  //         }
+  //       }
+        
+  //     fetchTasks();
+  //   }, []
+  // );
 
   function onTaskClick(taskId){
     const newTask = tasks.map(t => {
@@ -54,16 +62,22 @@ function App() {
         isCompleted: false
       };
 
-      console.log(newTask)
       setTasks([...tasks, newTask]);
     }
 
+    let existTask = tasks.length > 0;
+
   return (
+
+    
     <div className="bg-slate-500 flex justify-center p-6 h-screen">
       <div className="w-[500px] space-y-4">
         <Title>Gerenciador de Tarefas</Title>
-        <AddTask onAddTaskSubmit={onAddTaskSubmit}/>        
-        <Tasks tasks={tasks} taskClick={onTaskClick} deleteTask={deleteTask}/>
+        <AddTask onAddTaskSubmit={onAddTaskSubmit}/>
+        {
+          existTask &&
+            <Tasks tasks={tasks} taskClick={onTaskClick} deleteTask={deleteTask}/>
+        }         
       </div>
     </div>
   )
